@@ -1,0 +1,77 @@
+<!-- Example structure (syntax might vary based on your frontend framework) -->
+<div class="app-container">
+    <div class="tab-navigation">
+      <button onclick="showTab('home')">Home</button>
+      <button onclick="showTab('games')">Games</button>
+      <button onclick="showTab('dlc')">DLC</button>
+      <button onclick="showTab('missing')">Missing</button>
+    </div>
+  
+    <div class="tab-content">
+      <div id="home" class="tab-pane active">
+        Welcome to the Home tab.
+      </div>
+      <div id="games" class="tab-pane">
+        Welcome to the Games tab.
+      </div>
+      <div id="dlc" class="tab-pane">
+        Welcome to the DLC tab.
+      </div>
+      <div id="missing" class="tab-pane">
+        Welcome to the Missing tab.
+      </div>
+    </div>
+  </div>
+  
+  <style>
+  /* Basic styling for tabs - you'll want to customize this */
+  .tab-pane {
+    display: none; /* Hide tabs by default */
+    padding: 20px;
+  }
+  .tab-pane.active {
+    display: block; /* Show the active tab */
+  }
+  .tab-navigation button {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+  }
+  .tab-navigation button.active { /* You'd add/remove this class with JS */
+    background-color: #ddd;
+  }
+  </style>
+  
+  <script>
+  // Basic JavaScript for tab switching
+  function showTab(tabId) {
+    // Hide all tab panes
+    const panes = document.querySelectorAll('.tab-pane');
+    panes.forEach(pane => pane.classList.remove('active'));
+  
+    // Deactivate all buttons (optional styling)
+    const buttons = document.querySelectorAll('.tab-navigation button');
+     buttons.forEach(button => button.classList.remove('active')); // Assuming you add an 'active' class for styling
+  
+    // Show the selected tab pane
+    const selectedPane = document.getElementById(tabId);
+    if (selectedPane) {
+      selectedPane.classList.add('active');
+    }
+  
+    // Activate the clicked button (optional styling)
+     // Find the button corresponding to the tabId and add 'active' class
+     // This part requires slightly more logic to map tabId back to the button if needed.
+     // For simplicity, you might add data attributes to buttons: <button data-tab="home" ...>
+  }
+  
+  // Initialize by showing the first tab
+  document.addEventListener('DOMContentLoaded', () => {
+      showTab('home'); // Show the 'home' tab by default
+      // Optionally mark the 'Home' button as active here
+      const homeButton = document.querySelector('.tab-navigation button'); // Adjust selector if needed
+      if(homeButton) homeButton.classList.add('active');
+  });
+  </script>
+  
