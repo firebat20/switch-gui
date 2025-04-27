@@ -11,9 +11,9 @@ jobs:
         go-version: [1.24]
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - name: Install Go
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
       - name: setup node
@@ -26,12 +26,6 @@ jobs:
       - name: Build Wails app
         run: |
           wails build
-      - name: upload artifacts macOS
-        if: matrix.platform == 'macos-latest'
-        uses: actions/upload-artifact@v2
-        with:
-          name: wails-binaries-macos
-          path: build/bin/*
       - name: upload artifacts windows
         if: matrix.platform == 'windows-latest'
         uses: actions/upload-artifact@v2
